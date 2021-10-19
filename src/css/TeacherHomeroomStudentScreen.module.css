@@ -1,0 +1,76 @@
+.toAddTermMark {
+  height: 7vh;
+  background: var(--lightgreen);
+  color: white;
+  border-radius: 300px;
+  position: relative;
+  margin-bottom: 2vh;
+  box-sizing: border-box;
+  padding-left: 2vh;
+}
+
+.toAddTermMarkSpan {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.termMark {
+  height: calc(75 * calc(var(--title-height) / 100));
+  width: calc(75 * calc(var(--title-height) / 100));
+
+  border-radius: 1vh;
+
+  background: var(--lightgreen);
+  color: white;
+  position: relative;
+  float: right;
+  margin-right: 5%;
+}
+
+.termMarkSpan {
+  width: 100;
+  text-align: center;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.termMarksTitle {
+  /* margin-left: 2vh; */
+  color: var(--green);
+  font-weight: 600;
+}
+
+.termMarks {
+  width: 98%;
+  height: 5vh;
+  margin: auto;
+  margin-bottom: 2vh;
+  margin-top: 1.5vh;
+}
+
+.termMarksTermContainer {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.termMarksTerm {
+  width: var(--term-width);
+  height: 100%;
+  position: relative;
+  margin-left: calc(calc(100% - var(--term-width)) / 2);
+}
+
+.termMarksTermSpan {
+  float: left;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

@@ -1,0 +1,22 @@
+.title {
+  width: 98%;
+  height: calc(var(--header-height) / 1.5);
+
+  margin: auto;
+
+  position: relative;
+
+  color: var(--green);
+  /* background: red; */
+
+  border-bottom: var(--list-divider-height) solid #dbdbdb;
+
+  font-weight: 600;
+}
+
+.titleSpan {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

@@ -1,0 +1,85 @@
+header {
+  width: 100%;
+  height: var(--header-height);
+  background: #ffffff;
+  border-bottom: 1.5px solid #dbdbdb;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  box-shadow: 0 1.5px 4.5px #dbdbdb;
+}
+
+.headerContainer {
+  width: 70vw;
+  height: 100%;
+  margin: auto;
+}
+
+.headerLogoContainer {
+  width: 30%;
+  height: var(--header-height);
+  float: left;
+}
+
+.headerLogo {
+  height: var(--header-height);
+  width: var(--header-height);
+  position: relative;
+
+  float: left;
+}
+
+.headerLogoImg {
+  height: calc(var(--header-height) / 1.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headerLogoText {
+  height: 100%;
+
+  position: relative;
+
+  float: left;
+  font-size: 1.45em;
+  color: var(--green);
+}
+
+.headerLogoTextSpan {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  font-family: 'Merriweather', serif;
+}
+
+/* header right part */
+.headerLinksContainer {
+  width: 30%;
+  height: 100%;
+  float: right;
+}
+
+.headerProfile {
+  float: right;
+
+  width: var(--header-height);
+  height: var(--header-height);
+
+  position: relative;
+}
+
+.headerProfileImg {
+  float: right;
+
+  height: calc(var(--header-height) / 1.75);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

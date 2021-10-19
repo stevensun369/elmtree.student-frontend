@@ -1,0 +1,64 @@
+:root {
+  --header-container-width: 70%;
+  --header-back-button-img-height: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --header-container-width: 100%;
+    --header-back-button-img-height: 50%;
+  }
+}
+
+header {
+  width: 100%;
+  height: var(--header-height);
+  background: #ffffff;
+  border-bottom: 1.5px solid #dbdbdb;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  box-shadow: 0 1.5px 4.5px #dbdbdb;
+}
+
+.headerContainer {
+  width: var(--header-container-width);
+  height: 100%;
+
+  margin: auto;
+}
+
+.headerBackButton {
+  height: var(--header-height);
+  width: var(--header-height);
+  position: relative;
+
+  float: left;
+}
+
+.headerBackButtonImg {
+  height: var(--header-back-button-img-height);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headerTitle {
+  /* background: blue; */
+  height: 100%;
+  width: 70%;
+
+  margin-left: calc(var(--header-height) * 1.35);
+  position: relative;
+}
+
+.headerTitle span {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  font-weight: 700;
+}

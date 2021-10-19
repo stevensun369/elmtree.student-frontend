@@ -1,0 +1,53 @@
+.listElementContainer {
+  width: 100%;
+  height: calc(var(--header-height) / 1.5);
+  position: relative;
+}
+
+.listElement {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.listElementDate {
+  color: var(--green);
+  float: left;
+}
+
+.listElementMotivated {
+  float: right;
+  font-weight: 600;
+}
+
+.listElementMotivatedFalse {
+  color: var(--red);
+  position: relative;
+}
+
+.listElementMotivatedFalseImg {
+  height: 2.25vh;
+  margin-right: 1vh;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.listElementMotivatedFalse span {
+  margin-left: 3vh;
+}
+
+.listElementMotivatedTrue {
+  color: var(--lightgreen);
+}
+
+.fontMono {
+  font-family: sans-serif;
+}
+
+.fontSerif {
+  font-family: sans-serif;
+}

@@ -1,0 +1,145 @@
+:root {
+  --card-width: 40vw;
+  --logo-img-height: 7vh;
+  --submit-button-width: 14vw;
+}
+
+@media only screen and (max-width: 600px) {
+  :root {
+    --card-width: 90vw;
+    --logo-img-height: 5vh;
+    --submit-button-width: 40vw;
+  }
+}
+.logo {
+  width: 100%;
+  padding: 2vh 0;
+  margin-top: 15vh;
+}
+
+.logoImg {
+  height: var(--logo-img-height);
+  display: block;
+  margin: auto;
+}
+
+.logoText {
+  padding: 2vh 0;
+  margin: auto;
+  display: block;
+
+  font-family: 'Merriweather';
+  font-size: 2em;
+  color: var(--green);
+
+  text-align: center;
+}
+
+.messageContainer {
+  width: calc(calc(95 * var(--card-width)) / 100);
+  display: block;
+  margin: auto;
+  box-sizing: border-box;
+  padding: auto;
+}
+.mainCard {
+  width: var(--card-width);
+  /* background: white;
+  border: 1px solid #dbdbdb; */
+
+  margin: auto;
+
+  /*
+  -webkit-box-shadow: 1px 1px 5px #ccc; 
+  -moz-box-shadow: 1px 1px 5px #ccc;
+  box-shadow: 1px 1px 5px #ccc; 
+  */
+
+  border-radius: 26px;
+
+  padding: 2vh 0;
+}
+
+.input {
+  width: 95%;
+  height: 7vh;
+  background: lightgray;
+  border: 0;
+  border-radius: 0;
+
+  display: block;
+  margin: auto;
+
+  box-sizing: border-box;
+  padding-left: 2vh;
+  /* margin-bottom: 1px; */
+
+  color: var(--green);
+
+  border: 1px solid #fafafa;
+}
+
+.input::placeholder {
+  color: var(--green);
+}
+
+.input:focus {
+  border: 1px solid var(--green);
+  outline: none;
+}
+
+input[type='number'].input:focus::-webkit-inner-spin-button,
+input[type='number'].input:focus::-webkit-outer-spin-button {
+  -webkit-appearence: none;
+  margin: 0;
+}
+
+.input:active {
+  border: 1px solid var(--green);
+  outline: none;
+}
+
+input[type='number'].input:active::-webkit-inner-spin-button,
+input[type='number'].input:active::-webkit-outer-spin-button {
+  -webkit-appearence: none;
+  margin: 0;
+}
+
+input[type='number'].input::-webkit-inner-spin-button,
+input[type='number'].input::-webkit-outer-spin-button {
+  -webkit-appearence: none;
+  margin: 0;
+}
+
+input[type='number'].input {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textField;
+}
+
+input[type='number'].input:active {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textField;
+}
+
+input[type='number'].input:focus {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textField;
+}
+
+.submitButton {
+  width: var(--submit-button-width);
+  height: 7vh;
+  background: var(--green);
+  color: white;
+  display: block;
+  margin: auto;
+  margin-top: 7vh;
+  border: 0;
+}
+
+.submitButton:disabled {
+  opacity: 0.75;
+}

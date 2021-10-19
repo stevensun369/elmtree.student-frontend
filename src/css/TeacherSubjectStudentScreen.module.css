@@ -1,0 +1,42 @@
+.addContainer {
+  width: 100%;
+  height: calc(var(--header-height) / 1.25);
+  margin-bottom: 3vh;
+}
+
+.add {
+  width: 48%;
+  height: 100%;
+  margin-left: 1%;
+  margin-right: 1%;
+
+  background: var(--lightgreen);
+
+  position: relative;
+
+  box-sizing: border-box;
+  padding-left: 2vh;
+
+  border-radius: 300px;
+
+  float: left;
+}
+
+.add span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.notExist {
+  display: block;
+  margin: auto;
+  color: var(--green);
+  font-weight: 550;
+  max-width: 50%;
+  text-align: center;
+  margin-top: 2vh;
+}

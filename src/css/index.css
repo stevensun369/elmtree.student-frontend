@@ -1,0 +1,46 @@
+:root {
+  --green: #092e20;
+  --lightgreen: #44b78b;
+  --red: #990000;
+
+  --header-height: 7vh;
+  --header-margin-bottom: 9vh;
+
+  --container-width: 60vw;
+  --list-divider-height: 1.5px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --header-height: 7.5vh;
+    --header-margin-bottom: 9.5vh;
+
+    --container-width: 95vw;
+    --list-divider-height: 1px;
+  }
+}
+
+body {
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.header-margin-bottom {
+  width: 100%;
+  height: var(--header-margin-bottom);
+}
+
+.main-container {
+  width: var(--container-width);
+  margin: auto;
+}
+
+.list-divider {
+  width: 98%;
+  height: 0;
+
+  border-bottom: var(--list-divider-height) solid #dbdbdb;
+  margin: auto;
+}

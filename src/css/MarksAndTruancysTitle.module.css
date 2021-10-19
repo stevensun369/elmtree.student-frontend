@@ -1,0 +1,76 @@
+:root {
+  --title-height: calc(var(--header-height) / 1.15);
+}
+
+.title {
+  width: 98%;
+  height: var(--title-height);
+
+  margin: auto;
+
+  position: relative;
+
+  color: var(--green);
+  /* background: red; */
+
+  border-bottom: var(--list-divider-height) solid #dbdbdb;
+
+  font-weight: 600;
+}
+
+.titleSpan {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.buttonTo {
+  width: 45%;
+  height: 75%;
+  background: var(--lightgreen);
+  border-radius: 26px;
+
+  position: absolute;
+  top: 50%;
+  right: 2vh;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.buttonToSpan {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.averageMark {
+  height: calc(75 * calc(var(--title-height) / 100));
+  width: calc(75 * calc(var(--title-height) / 100));
+
+  border-radius: 1vh;
+
+  background: var(--lightgreen);
+  color: white;
+
+  position: absolute;
+  top: 50%;
+  right: 2vh;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.averageMarkSpan {
+  width: 100;
+  text-align: center;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
