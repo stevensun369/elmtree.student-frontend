@@ -12,17 +12,15 @@ import {
   STUDENT_SUBJECT_TRUANCYS_SUCCESS,
   STUDENT_SUBJECT_TRUANCYS_FAIL,
   STUDENT_SUBJECT_TRUANCYS_DELETE,
-  STUDENT_GET_AVERAGE_REQUEST,
-  STUDENT_GET_AVERAGE_SUCCESS,
-  STUDENT_GET_AVERAGE_FAIL,
-  STUDENT_GET_TERM_MARKS_REQUEST,
-  STUDENT_GET_TERM_MARKS_SUCCESS,
-  STUDENT_GET_TERM_MARKS_FAIL,
+  STUDENT_AVERAGE_MARKS_REQUEST,
+  STUDENT_AVERAGE_MARKS_SUCCESS,
+  STUDENT_AVERAGE_MARKS_FAIL,
+  STUDENT_TERM_MARKS_REQUEST,
+  STUDENT_TERM_MARKS_SUCCESS,
+  STUDENT_TERM_MARKS_FAIL,
 } from '../constants/studentConstants'
-// import apiURL from '../apiURL'
+import { apiURL } from '../env'
 import axios from 'axios'
-
-const apiURL = 'http://localhost:1000'
 
 export const login = (cnp, password) => async (dispatch) => {
   try {
@@ -80,29 +78,6 @@ export const studentUpdate = () => async (dispatch, getState) => {
 
     var ls = JSON.parse(localStorage.getItem('userInfo'))
 
-    // const grade = await axios.get(
-    //   `${apiURL}/api/student/grade/info`,
-    //   config
-    // )
-
-    // const subjectList = await axios.get(
-    //   `${apiURL}/api/student/subjects`,
-    //   config
-    // )
-
-    // dispatch({
-    //   type: STUDENT_UPDATE_GRADE,
-    //   payload: grade.data,
-    // })
-    // ls.grade = grade.data
-
-    // dispatch({
-    //   type: STUDENT_UPDATE_SUBJECT_LIST,
-    //   payload: subjectList.data,
-    // })
-    // ls.subjectList = subjectList.data
-
-    // new way
     const update = await axios.get(
       `${apiURL}/api/student/update`,
       config
@@ -121,7 +96,7 @@ export const studentUpdate = () => async (dispatch, getState) => {
   } catch (error) {}
 }
 
-export const getStudentSubjectMarksList =
+export const getStudentSubjectMarks =
   (subjectID) => async (dispatch, getState) => {
     try {
       dispatch({
@@ -155,7 +130,7 @@ export const getStudentSubjectMarksList =
     }
   }
 
-export const getStudentSubjectTruancysList =
+export const getStudentSubjectTruancys =
   (subjectID) => async (dispatch, getState) => {
     try {
       dispatch({
@@ -203,7 +178,7 @@ export const studentGetAverageMarks =
   () => async (dispatch, getState) => {
     try {
       dispatch({
-        type: STUDENT_GET_AVERAGE_REQUEST,
+        type: STUDENT_AVERAGE_MARKS_REQUEST,
       })
 
       const config = {
@@ -243,12 +218,12 @@ export const studentGetAverageMarks =
       }
 
       dispatch({
-        type: STUDENT_GET_AVERAGE_SUCCESS,
+        type: STUDENT_AVERAGE_MARKS_SUCCESS,
         payload: averageMarks,
       })
     } catch (error) {
       dispatch({
-        type: STUDENT_GET_AVERAGE_FAIL,
+        type: STUDENT_AVERAGE_MARKS_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
@@ -261,7 +236,7 @@ export const studentGetTermMarks =
   () => async (dispatch, getState) => {
     try {
       dispatch({
-        type: STUDENT_GET_TERM_MARKS_REQUEST,
+        type: STUDENT_TERM_MARKS_REQUEST,
       })
 
       const config = {
@@ -287,12 +262,12 @@ export const studentGetTermMarks =
       }
 
       dispatch({
-        type: STUDENT_GET_TERM_MARKS_SUCCESS,
+        type: STUDENT_TERM_MARKS_SUCCESS,
         payload: termMarks,
       })
     } catch (error) {
       dispatch({
-        type: STUDENT_GET_TERM_MARKS_FAIL,
+        type: STUDENT_TERM_MARKS_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

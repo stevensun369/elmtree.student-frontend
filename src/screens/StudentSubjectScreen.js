@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  getStudentSubjectMarksList,
-  getStudentSubjectTruancysList,
+  getStudentSubjectMarks,
+  getStudentSubjectTruancys,
   studentGetAverageMarks,
 } from '../actions/studentActions'
 import HeaderBack from '../components/HeaderBack'
@@ -41,13 +41,17 @@ const StudentSubjectScreen = ({ match, history }) => {
   }
 
   // student average marks
-  const studentAverageMarks = useSelector((state) => state.studentAverageMarks)
+  const studentAverageMarks = useSelector(
+    (state) => state.studentAverageMarks
+  )
   const { averageMarks } = studentAverageMarks
 
   var subjectAverageMarks = averageMarks[match.params.subjectID]
 
   // student subject marks
-  const studentSubjectMarks = useSelector((state) => state.studentSubjectMarks)
+  const studentSubjectMarks = useSelector(
+    (state) => state.studentSubjectMarks
+  )
   const { subjectMarksList } = studentSubjectMarks
 
   // student subject truancys
@@ -67,12 +71,12 @@ const StudentSubjectScreen = ({ match, history }) => {
 
   if (authorized) {
     // averageMarks
-    var { averageMarkTermOne, averageMarkTermTwo } = sortAverageMarksByTerm(
-      subjectAverageMarks
-    )
+    var { averageMarkTermOne, averageMarkTermTwo } =
+      sortAverageMarksByTerm(subjectAverageMarks)
 
     // marks based on terms
-    var { marksTermOne, marksTermTwo } = sortMarksByTerm(subjectMarksList)
+    var { marksTermOne, marksTermTwo } =
+      sortMarksByTerm(subjectMarksList)
 
     // truancys based on terms
     var { truancysTermOne, truancysTermTwo } = sortTruancysByTerm(
@@ -85,8 +89,8 @@ const StudentSubjectScreen = ({ match, history }) => {
   }
 
   useEffect(() => {
-    dispatch(getStudentSubjectMarksList(match.params.subjectID))
-    dispatch(getStudentSubjectTruancysList(match.params.subjectID))
+    dispatch(getStudentSubjectMarks(match.params.subjectID))
+    dispatch(getStudentSubjectTruancys(match.params.subjectID))
 
     if (Object.keys(averageMarks).length === 0) {
       dispatch(studentGetAverageMarks())
@@ -115,7 +119,10 @@ const StudentSubjectScreen = ({ match, history }) => {
                   marginBottom: '2vh',
                 }}
               >
-                <MarksTitle toAverageMark='' averageMark={averageMarkTermOne}>
+                <MarksTitle
+                  toAverageMark=''
+                  averageMark={averageMarkTermOne}
+                >
                   Note - Semestrul I
                 </MarksTitle>
                 {marksTermOne.length > 0 ? (
@@ -131,7 +138,9 @@ const StudentSubjectScreen = ({ match, history }) => {
                     ))}
                   </>
                 ) : (
-                  <span className={styles.notExist}>Nu există note incă</span>
+                  <span className={styles.notExist}>
+                    Nu există note incă
+                  </span>
                 )}
 
                 <br></br>
@@ -167,7 +176,10 @@ const StudentSubjectScreen = ({ match, history }) => {
                   marginBottom: '2vh',
                 }}
               >
-                <MarksTitle toAverageMark='' averageMark={averageMarkTermTwo}>
+                <MarksTitle
+                  toAverageMark=''
+                  averageMark={averageMarkTermTwo}
+                >
                   Note - Semestrul II
                 </MarksTitle>
                 {marksTermTwo.length > 0 ? (
@@ -183,7 +195,9 @@ const StudentSubjectScreen = ({ match, history }) => {
                     ))}
                   </>
                 ) : (
-                  <span className={styles.notExist}>Nu există note incă</span>
+                  <span className={styles.notExist}>
+                    Nu există note incă
+                  </span>
                 )}
                 <br></br>
 

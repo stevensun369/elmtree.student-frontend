@@ -3,6 +3,7 @@ import {
   STUDENT_LOGIN_SUCCESS,
   STUDENT_LOGIN_FAIL,
   STUDENT_UPDATE,
+  STUDENT_READ_LS,
   STUDENT_LOGOUT,
   STUDENT_SUBJECT_MARKS_REQUEST,
   STUDENT_SUBJECT_MARKS_SUCCESS,
@@ -12,12 +13,12 @@ import {
   STUDENT_SUBJECT_TRUANCYS_SUCCESS,
   STUDENT_SUBJECT_TRUANCYS_FAIL,
   STUDENT_SUBJECT_TRUANCYS_DELETE,
-  STUDENT_GET_AVERAGE_REQUEST,
-  STUDENT_GET_AVERAGE_SUCCESS,
-  STUDENT_GET_AVERAGE_FAIL,
-  STUDENT_GET_TERM_MARKS_REQUEST,
-  STUDENT_GET_TERM_MARKS_SUCCESS,
-  STUDENT_GET_TERM_MARKS_FAIL,
+  STUDENT_AVERAGE_MARKS_REQUEST,
+  STUDENT_AVERAGE_MARKS_SUCCESS,
+  STUDENT_AVERAGE_MARKS_FAIL,
+  STUDENT_TERM_MARKS_REQUEST,
+  STUDENT_TERM_MARKS_SUCCESS,
+  STUDENT_TERM_MARKS_FAIL,
 } from '../constants/studentConstants'
 
 export const studentLoginReducer = (state = {}, action) => {
@@ -41,13 +42,24 @@ export const studentLoginReducer = (state = {}, action) => {
       }
     case STUDENT_LOGIN_FAIL:
       return { loading: false, error: action.payload }
-    // case STUDENT_UPDATE_GRADE:
-    //   return { ...state, grade: action.payload }
-    // case STUDENT_UPDATE_SUBJECT_LIST:
-    //   return { ...state, subjectList: action.payload }
     case STUDENT_UPDATE:
       return {
         ...state,
+        grade: action.payload.grade,
+        subjectList: action.payload.subjectList,
+        token: action.payload.token,
+      }
+    case STUDENT_READ_LS:
+      const studentInfoDestructureReadLS = {
+        studentID: action.payload.studentID,
+        firstName: action.payload.firstName,
+        dadInitials: action.payload.dadInitials,
+        lastName: action.payload.lastName,
+        cnp: action.payload.cnp,
+      }
+      return {
+        ...state,
+        studentInfo: studentInfoDestructureReadLS,
         grade: action.payload.grade,
         subjectList: action.payload.subjectList,
         token: action.payload.token,
@@ -100,11 +112,11 @@ export const studentAverageMarksReducer = (
   action
 ) => {
   switch (action.type) {
-    case STUDENT_GET_AVERAGE_REQUEST:
+    case STUDENT_AVERAGE_MARKS_REQUEST:
       return { loading: true, averageMarks: [] }
-    case STUDENT_GET_AVERAGE_SUCCESS:
+    case STUDENT_AVERAGE_MARKS_SUCCESS:
       return { loading: false, averageMarks: action.payload }
-    case STUDENT_GET_AVERAGE_FAIL:
+    case STUDENT_AVERAGE_MARKS_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state
@@ -116,11 +128,11 @@ export const studentTermMarksReducer = (
   action
 ) => {
   switch (action.type) {
-    case STUDENT_GET_TERM_MARKS_REQUEST:
+    case STUDENT_TERM_MARKS_REQUEST:
       return { loading: true, termMarks: [] }
-    case STUDENT_GET_TERM_MARKS_SUCCESS:
+    case STUDENT_TERM_MARKS_SUCCESS:
       return { loading: false, termMarks: action.payload }
-    case STUDENT_GET_TERM_MARKS_FAIL:
+    case STUDENT_TERM_MARKS_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

@@ -7,6 +7,8 @@ import HeaderBack from '../components/HeaderBack'
 
 import { studentLogout } from '../actions/studentActions'
 
+import { authURL } from '../env'
+
 import styles from '../css/ProfileScreen.module.css'
 
 const ProfileScreen = ({ history }) => {
@@ -22,10 +24,8 @@ const ProfileScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    // student
-    if (studentInfo) {
-      dispatch(studentLogout())
-    }
+    dispatch(studentLogout())
+    window.location.replace(authURL + '/#/logout')
   }
 
   return (

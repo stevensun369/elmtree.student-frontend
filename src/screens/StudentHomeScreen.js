@@ -19,23 +19,22 @@ const StudentHomeScreen = ({ history }) => {
   const studentLogin = useSelector((state) => state.studentLogin)
   const { studentInfo, subjectList } = studentLogin
 
-  // if user not logged in
-  if (!studentLogin.studentInfo) {
-    history.push('/')
-  }
-
   // student averageMarks
-  const studentAverageMarks = useSelector((state) => state.studentAverageMarks)
+  const studentAverageMarks = useSelector(
+    (state) => state.studentAverageMarks
+  )
   const { averageMarks } = studentAverageMarks
 
   // subject average marks
   var subjectAverageMarks = sortAverageMarks(averageMarks)
 
   // sorting the term marks
-  const studentTermMarks = useSelector((state) => state.studentTermMarks)
-  const { termMarks } = studentTermMarks
-  const termMarkTermOne = studentTermMarks.termMarks[0]
-  const termMarkTermTwo = studentTermMarks.termMarks[1]
+  const studentTermMarks = useSelector(
+    (state) => state.studentTermMarks
+  )
+  let { termMarks } = studentTermMarks
+  let termMarkTermOne = 0
+  let termMarkTermTwo = 0
 
   useEffect(() => {
     dispatch(deleteMarksAndTruancys())
@@ -46,6 +45,8 @@ const StudentHomeScreen = ({ history }) => {
     if (Object.keys(averageMarks).length === 0) {
       dispatch(studentGetAverageMarks())
     }
+    termMarkTermOne = studentTermMarks.termMarks[0]
+    termMarkTermTwo = studentTermMarks.termMarks[1]
   }, [dispatch])
 
   return (
@@ -55,14 +56,18 @@ const StudentHomeScreen = ({ history }) => {
           <HeaderFull />
           <div className='header-margin-bottom'></div>
           <div className='main-container'>
-            <span className={styles.termMarksTitle}>Mediile Semestriale:</span>
+            <span className={styles.termMarksTitle}>
+              Mediile Semestriale:
+            </span>
             <div
               className={styles.termMarks}
               style={{ marginBottom: '3vh', width: '98%' }}
             >
               <div className={styles.termMarksTermContainer}>
                 <div className={styles.termMarksTerm}>
-                  <div className={styles.termMarksTermSpan}>Sem. I:</div>
+                  <div className={styles.termMarksTermSpan}>
+                    Sem. I:
+                  </div>
                   <div className={styles.termMark}>
                     <span className={styles.termMarkSpan}>
                       {termMarkTermOne !== 0 && termMarkTermOne ? (
@@ -77,7 +82,9 @@ const StudentHomeScreen = ({ history }) => {
 
               <div className={styles.termMarksTermContainer}>
                 <div className={styles.termMarksTerm}>
-                  <div className={styles.termMarksTermSpan}>Sem. II:</div>
+                  <div className={styles.termMarksTermSpan}>
+                    Sem. II:
+                  </div>
                   <div className={styles.termMark}>
                     <span className={styles.termMarkSpan}>
                       {termMarkTermTwo !== 0 && termMarkTermTwo ? (

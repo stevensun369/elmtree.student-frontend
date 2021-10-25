@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 //student
 import StudentLoginScreen from './screens/StudentLoginScreen'
+import StudentIndex from './screens/StudentIndex'
 import StudentHomeScreen from './screens/StudentHomeScreen'
 import StudentSubjectScreen from './screens/StudentSubjectScreen'
 
@@ -26,11 +27,7 @@ function App() {
   return (
     <Router>
       {/* student */}
-      <Route
-        path='/conectare/elev'
-        component={StudentLoginScreen}
-        exact
-      />
+      <Route path='/' component={StudentIndex} exact />
       <Route path='/elev' component={StudentHomeScreen} exact />
       <Route
         path='/elev/:subjectID'

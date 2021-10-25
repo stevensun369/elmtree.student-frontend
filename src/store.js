@@ -10,6 +10,8 @@ import {
   studentAverageMarksReducer,
   studentTermMarksReducer,
 } from './reducers/studentReducers'
+import { getAverageMarks } from './utils/averageMarks'
+import { getTermMarks } from './utils/termMarks'
 
 const reducer = combineReducers({
   // student reducers
@@ -63,5 +65,41 @@ const store = createStore(
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 )
+
+window.onload = async () => {
+  var iframe = document.getElementsByTagName('iframe')[0]
+  var win
+  try {
+    win = iframe.contentWindow
+  } catch (e) {
+    win = iframe.contentWindow
+  }
+  win.postMessage('', '*')
+  let requestData
+  window.onmessage = (e) => {
+    requestData = e.data
+    console.log(requestData.userType)
+
+    if (requestData.userType !== 'student' && requestData.userType) {
+      // window.location.replace('https://google.com')
+      // alert('not teacher')
+    }
+
+    var teacherID = localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo')).teacherID
+      : null
+
+    if (teacherID !== JSON.parse(requestData.userInfo).teacherID) {
+      localStorage.setItem('userType', requestData.userType)
+      localStorage.setItem('userInfo', requestData.userInfo)
+      store.dispatch({
+        type: 'STUDENT_READ_LS',
+        payload: JSON.parse(requestData.userInfo),
+      })
+      getAverageMarks(store.dispatch, store.getState)
+      getTermMarks(store.dispatch, store.getState)
+    }
+  }
+}
 
 export default store
