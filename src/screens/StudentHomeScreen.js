@@ -33,21 +33,25 @@ const StudentHomeScreen = ({ history }) => {
     (state) => state.studentTermMarks
   )
   let { termMarks } = studentTermMarks
-  let termMarkTermOne = 0
-  let termMarkTermTwo = 0
+  const termMarkTermOne = studentTermMarks.termMarks[0]
+  const termMarkTermTwo = studentTermMarks.termMarks[1]
 
   useEffect(() => {
     dispatch(deleteMarksAndTruancys())
+  }, [dispatch])
+
+  useEffect(() => {
     if (termMarks.length === 0) {
       dispatch(studentGetTermMarks())
     }
+  }, [dispatch, termMarks.length])
 
-    if (Object.keys(averageMarks).length === 0) {
+  const averageMarksLength = Object.keys(averageMarks).length
+  useEffect(() => {
+    if (averageMarksLength === 0) {
       dispatch(studentGetAverageMarks())
     }
-    termMarkTermOne = studentTermMarks.termMarks[0]
-    termMarkTermTwo = studentTermMarks.termMarks[1]
-  }, [dispatch])
+  }, [dispatch, averageMarksLength])
 
   return (
     <>

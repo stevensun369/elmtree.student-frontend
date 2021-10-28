@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 //student
-import StudentLoginScreen from './screens/StudentLoginScreen'
 import StudentIndex from './screens/StudentIndex'
 import StudentHomeScreen from './screens/StudentHomeScreen'
 import StudentSubjectScreen from './screens/StudentSubjectScreen'

@@ -91,11 +91,14 @@ const StudentSubjectScreen = ({ match, history }) => {
   useEffect(() => {
     dispatch(getStudentSubjectMarks(match.params.subjectID))
     dispatch(getStudentSubjectTruancys(match.params.subjectID))
+  }, [dispatch, match.params.subjectID])
 
-    if (Object.keys(averageMarks).length === 0) {
+  const averageMarksLength = Object.keys(averageMarks).length
+  useEffect(() => {
+    if (averageMarksLength === 0) {
       dispatch(studentGetAverageMarks())
     }
-  }, [dispatch, match.params.subjectID])
+  }, [dispatch, averageMarksLength])
 
   if (authorized) {
     return (
