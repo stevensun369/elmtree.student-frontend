@@ -32,9 +32,7 @@ const StudentHomeScreen = ({ history }) => {
   const studentTermMarks = useSelector(
     (state) => state.studentTermMarks
   )
-  let { termMarks } = studentTermMarks
-  const termMarkTermOne = studentTermMarks.termMarks[0]
-  const termMarkTermTwo = studentTermMarks.termMarks[1]
+  const { termMarks } = studentTermMarks
 
   useEffect(() => {
     dispatch(deleteMarksAndTruancys())
@@ -74,8 +72,9 @@ const StudentHomeScreen = ({ history }) => {
                   </div>
                   <div className={styles.termMark}>
                     <span className={styles.termMarkSpan}>
-                      {termMarkTermOne !== 0 && termMarkTermOne ? (
-                        <>{termMarkTermOne}</>
+                      {studentTermMarks.termMarks[0] !== 0 &&
+                      studentTermMarks.termMarks[0] ? (
+                        <>{studentTermMarks.termMarks[0]}</>
                       ) : (
                         <>-</>
                       )}
@@ -91,8 +90,9 @@ const StudentHomeScreen = ({ history }) => {
                   </div>
                   <div className={styles.termMark}>
                     <span className={styles.termMarkSpan}>
-                      {termMarkTermTwo !== 0 && termMarkTermTwo ? (
-                        <>{termMarkTermTwo}</>
+                      {studentTermMarks.termMarks[1] !== 0 &&
+                      studentTermMarks.termMarks[1] ? (
+                        <>{studentTermMarks.termMarks[1]}</>
                       ) : (
                         <>-</>
                       )}

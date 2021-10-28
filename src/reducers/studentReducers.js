@@ -117,7 +117,11 @@ export const studentAverageMarksReducer = (
     case STUDENT_AVERAGE_MARKS_SUCCESS:
       return { loading: false, averageMarks: action.payload }
     case STUDENT_AVERAGE_MARKS_FAIL:
-      return { loading: false, error: action.payload }
+      return {
+        loading: false,
+        error: action.payload,
+        averageMarks: [],
+      }
     default:
       return state
   }
@@ -133,7 +137,7 @@ export const studentTermMarksReducer = (
     case STUDENT_TERM_MARKS_SUCCESS:
       return { loading: false, termMarks: action.payload }
     case STUDENT_TERM_MARKS_FAIL:
-      return { loading: false, error: action.payload }
+      return { loading: false, error: action.payload, termMarks: [] }
     default:
       return state
   }
