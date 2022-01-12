@@ -18,6 +18,9 @@ import {
   STUDENT_TERM_MARKS_REQUEST,
   STUDENT_TERM_MARKS_SUCCESS,
   STUDENT_TERM_MARKS_FAIL,
+  STUDENT_TIMETABLE_REQUEST,
+  STUDENT_TIMETABLE_SUCCESS,
+  STUDENT_TIMETABLE_FAIL,
 } from '../constants/studentConstants'
 import { apiURL } from '../env'
 import axios from 'axios'
@@ -275,3 +278,54 @@ export const studentGetTermMarks =
       })
     }
   }
+
+export const getTimetable = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: STUDENT_TIMETABLE_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getState().studentLogin.token}`,
+      },
+    }
+
+    const { data } = await axios.get(
+      `${apiURL}/api/student/timetable`,
+      config
+    )
+
+    var days = [1, 2, 3, 4, 5]
+    var intervals = ['pm1', 'pm2', 'pm3', 'pm4', 'pm5', 'pm6', 'pm7']
+    var periods = {}
+
+    for (var dayKey in days) {
+      var day = days[dayKey]
+      periods[day] = {}
+      for (var intervalKey in intervals) {
+        var interval = intervals[intervalKey]
+        periods[day][interval] = []
+      }
+    }
+
+    for (var key in data) {
+      var period = data[key]
+      periods[period.day][period.interval].push(period)
+    }
+
+    dispatch({
+      type: STUDENT_TIMETABLE_SUCCESS,
+      payload: periods,
+    })
+  } catch (error) {
+    dispatch({
+      type: STUDENT_TIMETABLE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}

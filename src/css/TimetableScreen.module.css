@@ -1,0 +1,159 @@
+/*tables*/
+:root {
+  --interval-col-width: 25%;
+}
+
+table {
+  width: 100%;
+}
+
+thead {
+  background: var(--green);
+  color: white;
+  border-radius: 2vh;
+}
+
+thead th:nth-child(1) {
+  width: var(--interval-col-width);
+}
+
+thead th:nth-child(2) {
+  width: calc(100% - var(--interval-col-width));
+}
+
+thead th {
+  height: 2vh;
+  position: relative;
+  box-sizing: border-box;
+  padding: 2vh 0;
+  text-align: center;
+}
+
+.thSpan {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+tbody th {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.thFirst {
+  border-top-left-radius: 2vh;
+  border-bottom-left-radius: 2vh;
+}
+
+.thLast {
+  border-top-right-radius: 2vh;
+  border-bottom-right-radius: 2vh;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.tableCellSelected {
+  color: white;
+  background: var(--lightgreen);
+  border-radius: 2vh;
+}
+
+.label {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  padding: 2vh 0;
+  text-align: center;
+}
+
+.labelSpan {
+  /* margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  width: 100%;
+  text-align: center;
+}
+/*form*/
+.inputValue {
+  width: 100%;
+  height: calc(var(--header-height) / 1.25);
+  border: none;
+  background: lightgray;
+  border-radius: 0;
+
+  display: block;
+
+  padding-left: 2vh;
+
+  color: var(--green);
+  border: 1px solid lightgray;
+
+  margin-bottom: 2vh;
+}
+
+.inputValue::placeholder {
+  color: var(--green);
+}
+
+.inputValue:focus {
+  border-radius: 0;
+  border: 1px solid var(--green);
+  outline: none;
+}
+
+.inputValue:active {
+  border-radius: 0;
+  border: 1px solid var(--green);
+  outline: none;
+}
+
+.submitButton {
+  background: var(--green);
+  color: white;
+  height: calc(var(--header-height) / 1.25);
+  min-width: var(--submit-button-width);
+
+  display: block;
+  margin: auto;
+  margin-top: 1vh;
+
+  border: 0;
+  outline: 0;
+}
+
+.submitButton:disabled {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.submitButton {
+  background: var(--green);
+  color: white;
+  height: calc(var(--header-height) / 1.25);
+  min-width: var(--submit-button-width);
+
+  display: block;
+  margin: auto;
+  margin-top: 1vh;
+
+  border: 0;
+  outline: 0;
+}
+
+.submitButton:disabled {
+  pointer-events: none;
+  opacity: 0.75;
+}

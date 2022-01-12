@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import {
   deleteMarksAndTruancys,
@@ -58,6 +59,13 @@ const StudentHomeScreen = ({ history }) => {
           <HeaderFull />
           <div className='header-margin-bottom'></div>
           <div className='main-container'>
+            <Link to={`/orar`}>
+              <div className='toTimetable'>
+                <span>&gt;&gt; către orar</span>
+              </div>
+            </Link>
+            <div style={{ marginTop: '2vh' }}></div>
+
             <span className={styles.termMarksTitle}>
               Mediile Semestriale:
             </span>

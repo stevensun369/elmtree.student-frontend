@@ -19,6 +19,9 @@ import {
   STUDENT_TERM_MARKS_REQUEST,
   STUDENT_TERM_MARKS_SUCCESS,
   STUDENT_TERM_MARKS_FAIL,
+  STUDENT_TIMETABLE_REQUEST,
+  STUDENT_TIMETABLE_SUCCESS,
+  STUDENT_TIMETABLE_FAIL,
 } from '../constants/studentConstants'
 
 export const studentLoginReducer = (state = {}, action) => {
@@ -138,6 +141,22 @@ export const studentTermMarksReducer = (
       return { loading: false, termMarks: action.payload }
     case STUDENT_TERM_MARKS_FAIL:
       return { loading: false, error: action.payload, termMarks: [] }
+    default:
+      return state
+  }
+}
+
+export const studentTimetableReducer = (
+  state = { periods: [] },
+  action
+) => {
+  switch (action.type) {
+    case STUDENT_TIMETABLE_REQUEST:
+      return { loading: true, periods: [] }
+    case STUDENT_TIMETABLE_SUCCESS:
+      return { loading: false, periods: action.payload }
+    case STUDENT_TIMETABLE_FAIL:
+      return { loading: false, error: action.payload, periods: [] }
     default:
       return state
   }

@@ -12,6 +12,7 @@ import ProfileScreen from './screens/ProfileScreen'
 
 // student update action
 import { studentUpdate } from './actions/studentActions'
+import TimetableScreen from './screens/TimetableScreen'
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +34,8 @@ function App() {
         component={StudentSubjectScreen}
         exact
       />
+
+      <Route path='/orar' component={TimetableScreen} exact />
 
       {/* profil */}
       <Route path='/profil' component={ProfileScreen} exact />

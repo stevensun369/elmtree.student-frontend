@@ -9,6 +9,7 @@ import {
   studentSubjectTruancysReducer,
   studentAverageMarksReducer,
   studentTermMarksReducer,
+  studentTimetableReducer,
 } from './reducers/studentReducers'
 import { getAverageMarks } from './utils/averageMarks'
 import { getTermMarks } from './utils/termMarks'
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   studentSubjectTruancys: studentSubjectTruancysReducer,
   studentAverageMarks: studentAverageMarksReducer,
   studentTermMarks: studentTermMarksReducer,
+  studentTimetable: studentTimetableReducer,
 })
 
 const userTypeFromStorage = localStorage.getItem('userType')
