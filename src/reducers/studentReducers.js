@@ -19,9 +19,18 @@ import {
   STUDENT_TERM_MARKS_REQUEST,
   STUDENT_TERM_MARKS_SUCCESS,
   STUDENT_TERM_MARKS_FAIL,
+  STUDENT_FINAL_MARKS_REQUEST,
+  STUDENT_FINAL_MARKS_SUCCESS,
+  STUDENT_FINAL_MARKS_FAIL,
   STUDENT_TIMETABLE_REQUEST,
   STUDENT_TIMETABLE_SUCCESS,
   STUDENT_TIMETABLE_FAIL,
+  STUDENT_TIMETABLE_TEACHERS_REQUEST,
+  STUDENT_TIMETABLE_TEACHERS_SUCCESS,
+  STUDENT_TIMETABLE_TEACHERS_FAIL,
+  STUDENT_SCHOOL_REQUEST,
+  STUDENT_SCHOOL_SUCCESS,
+  STUDENT_SCHOOL_FAIL,
 } from '../constants/studentConstants'
 
 export const studentLoginReducer = (state = {}, action) => {
@@ -157,6 +166,54 @@ export const studentTimetableReducer = (
       return { loading: false, periods: action.payload }
     case STUDENT_TIMETABLE_FAIL:
       return { loading: false, error: action.payload, periods: [] }
+    default:
+      return state
+  }
+}
+
+export const studentTimetableTeachersReducer = (
+  state = { teachers: {} },
+  action
+) => {
+  switch (action.type) {
+    case STUDENT_TIMETABLE_TEACHERS_REQUEST:
+      return { loading: true, teachers: {} }
+    case STUDENT_TIMETABLE_TEACHERS_SUCCESS:
+      return { loading: false, teachers: action.payload }
+    case STUDENT_TIMETABLE_TEACHERS_FAIL:
+      return { loading: false, error: action.payload, teachers: {} }
+    default:
+      return state
+  }
+}
+
+export const studentSchoolReducer = (
+  state = { school: {} },
+  action
+) => {
+  switch (action.type) {
+    case STUDENT_SCHOOL_REQUEST:
+      return { loading: true, school: {} }
+    case STUDENT_SCHOOL_SUCCESS:
+      return { loading: false, school: action.payload }
+    case STUDENT_SCHOOL_FAIL:
+      return { loading: false, error: action.payload, school: {} }
+    default:
+      return state
+  }
+}
+
+export const studentFinalMarksReducer = (
+  state = { finalMarks: {} },
+  action
+) => {
+  switch (action.type) {
+    case STUDENT_FINAL_MARKS_REQUEST:
+      return { loading: true, finalMarks: {} }
+    case STUDENT_FINAL_MARKS_SUCCESS:
+      return { loading: false, finalMarks: action.payload }
+    case STUDENT_FINAL_MARKS_FAIL:
+      return { loading: false, error: action.payload, finalMarks: {} }
     default:
       return state
   }

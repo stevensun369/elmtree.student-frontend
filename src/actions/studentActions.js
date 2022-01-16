@@ -18,9 +18,18 @@ import {
   STUDENT_TERM_MARKS_REQUEST,
   STUDENT_TERM_MARKS_SUCCESS,
   STUDENT_TERM_MARKS_FAIL,
+  STUDENT_FINAL_MARKS_REQUEST,
+  STUDENT_FINAL_MARKS_SUCCESS,
+  STUDENT_FINAL_MARKS_FAIL,
   STUDENT_TIMETABLE_REQUEST,
   STUDENT_TIMETABLE_SUCCESS,
   STUDENT_TIMETABLE_FAIL,
+  STUDENT_TIMETABLE_TEACHERS_REQUEST,
+  STUDENT_TIMETABLE_TEACHERS_SUCCESS,
+  STUDENT_TIMETABLE_TEACHERS_FAIL,
+  STUDENT_SCHOOL_REQUEST,
+  STUDENT_SCHOOL_SUCCESS,
+  STUDENT_SCHOOL_FAIL,
 } from '../constants/studentConstants'
 import { apiURL } from '../env'
 import axios from 'axios'
@@ -298,21 +307,17 @@ export const getTimetable = () => async (dispatch, getState) => {
     )
 
     var days = [1, 2, 3, 4, 5]
-    var intervals = ['pm1', 'pm2', 'pm3', 'pm4', 'pm5', 'pm6', 'pm7']
+    // var intervals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
     var periods = {}
 
     for (var dayKey in days) {
       var day = days[dayKey]
       periods[day] = {}
-      for (var intervalKey in intervals) {
-        var interval = intervals[intervalKey]
-        periods[day][interval] = []
-      }
     }
 
     for (var key in data) {
       var period = data[key]
-      periods[period.day][period.interval].push(period)
+      periods[period.day][period.interval] = period
     }
 
     dispatch({
@@ -329,3 +334,147 @@ export const getTimetable = () => async (dispatch, getState) => {
     })
   }
 }
+
+export const getTimetableTeachers =
+  () => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: STUDENT_TIMETABLE_TEACHERS_REQUEST,
+      })
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getState().studentLogin.token}`,
+        },
+      }
+
+      const { data } = await axios.get(
+        `${apiURL}/api/student/timetable/teachers`,
+        config
+      )
+
+      let subjectList = getState().studentLogin.subjectList
+      let subjectIDList = []
+      for (let subject in subjectList) {
+        subjectIDList.push(subjectList[subject].subjectID)
+      }
+
+      var teachers = {}
+      for (var subjectID in subjectIDList) {
+        teachers[subjectIDList[subjectID]] = []
+      }
+
+      for (let subjectIDIndex in subjectIDList) {
+        let subjectID = subjectIDList[subjectIDIndex]
+        for (let teacherIndex in data) {
+          let teacher = data[teacherIndex]
+          for (let subjectIndex in teacher.subjectList) {
+            let subject = teacher.subjectList[subjectIndex]
+            if (subject.subjectID === subjectID) {
+              console.log(subject)
+              teachers[subject.subjectID].push(
+                teacher.firstName + ' ' + teacher.lastName
+              )
+            }
+          }
+        }
+      }
+
+      dispatch({
+        type: STUDENT_TIMETABLE_TEACHERS_SUCCESS,
+        payload: teachers,
+      })
+    } catch (error) {
+      dispatch({
+        type: STUDENT_TIMETABLE_TEACHERS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
+  }
+
+export const getSchool = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: STUDENT_SCHOOL_REQUEST,
+    })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getState().studentLogin.token}`,
+      },
+    }
+
+    const { data } = await axios.get(
+      `${apiURL}/api/student/school`,
+      config
+    )
+
+    dispatch({
+      type: STUDENT_SCHOOL_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: STUDENT_SCHOOL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+export const getFinalMarks =
+  (subjectID) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: STUDENT_FINAL_MARKS_REQUEST,
+      })
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getState().studentLogin.token}`,
+        },
+      }
+
+      const { data } = await axios.get(
+        `${apiURL}/api/student/final/${subjectID}`,
+        config
+      )
+
+      let finalMarkTermOne = {}
+      let finalMarkTermTwo = {}
+
+      for (let finalMark in data) {
+        if (data[finalMark].term === 1) {
+          finalMarkTermOne = data[finalMark]
+        }
+        if (data[finalMark].term === 2) {
+          finalMarkTermTwo = data[finalMark]
+        }
+      }
+
+      let finalMarks = {
+        1: finalMarkTermOne,
+        2: finalMarkTermTwo,
+      }
+
+      dispatch({
+        type: STUDENT_FINAL_MARKS_SUCCESS,
+        payload: finalMarks,
+      })
+    } catch (error) {
+      dispatch({
+        type: STUDENT_FINAL_MARKS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
+  }

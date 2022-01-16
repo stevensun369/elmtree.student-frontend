@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  getFinalMarks,
   getStudentSubjectMarks,
   getStudentSubjectTruancys,
   studentGetAverageMarks,
@@ -14,6 +15,7 @@ import TruancysTitle from '../components/TruancysTitle'
 
 import Mark from '../components/Mark'
 import Truancy from '../components/Truancy'
+import FinalMark from '../components/FinalMark'
 
 import styles from '../css/TeacherSubjectStudentScreen.module.css'
 
@@ -39,6 +41,11 @@ const StudentSubjectScreen = ({ match, history }) => {
       studentLogin.subjectList
     )
   }
+
+  // final marks
+  const { finalMarks } = useSelector(
+    (state) => state.studentFinalMarks
+  )
 
   // student average marks
   const studentAverageMarks = useSelector(
@@ -91,6 +98,7 @@ const StudentSubjectScreen = ({ match, history }) => {
   useEffect(() => {
     dispatch(getStudentSubjectMarks(match.params.subjectID))
     dispatch(getStudentSubjectTruancys(match.params.subjectID))
+    dispatch(getFinalMarks(match.params.subjectID))
   }, [dispatch, match.params.subjectID])
 
   const averageMarksLength = Object.keys(averageMarks).length
@@ -139,6 +147,10 @@ const StudentSubjectScreen = ({ match, history }) => {
                         {item.value}
                       </Mark>
                     ))}
+
+                    {finalMarks[1] && (
+                      <FinalMark term={1} finalMarks={finalMarks} />
+                    )}
                   </>
                 ) : (
                   <span className={styles.notExist}>
@@ -196,6 +208,10 @@ const StudentSubjectScreen = ({ match, history }) => {
                         {item.value}
                       </Mark>
                     ))}
+
+                    {finalMarks[2] && (
+                      <FinalMark term={2} finalMarks={finalMarks} />
+                    )}
                   </>
                 ) : (
                   <span className={styles.notExist}>
