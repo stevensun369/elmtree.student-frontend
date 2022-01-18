@@ -16,6 +16,7 @@ import {
 } from './reducers/studentReducers'
 import { getAverageMarks } from './utils/averageMarks'
 import { getTermMarks } from './utils/termMarks'
+import { authURL } from './env'
 
 const reducer = combineReducers({
   // student reducers
@@ -89,8 +90,7 @@ window.onload = async () => {
     console.log(requestData.userType)
 
     if (requestData.userType !== 'student' && requestData.userType) {
-      // window.location.replace('https://google.com')
-      // alert('not teacher')
+      window.location.replace(authURL + '/#/')
     }
 
     var teacherID = localStorage.getItem('userInfo')
