@@ -7,6 +7,8 @@ import StudentIndex from './screens/StudentIndex'
 import StudentHomeScreen from './screens/StudentHomeScreen'
 import StudentSubjectScreen from './screens/StudentSubjectScreen'
 
+import { authURL } from './env'
+
 // profile
 import ProfileScreen from './screens/ProfileScreen'
 
@@ -25,21 +27,30 @@ function App() {
   }, [dispatch, studentLogin.studentInfo])
 
   return (
-    <Router>
-      {/* student */}
-      <Route path='/' component={StudentIndex} exact />
-      <Route path='/elev' component={StudentHomeScreen} exact />
-      <Route
-        path='/elev/:subjectID'
-        component={StudentSubjectScreen}
-        exact
-      />
+    <>
+      <iframe
+        src={`${authURL}/#/auth`}
+        frameBorder='0'
+        width='0'
+        height='0'
+        title='auth'
+      ></iframe>
+      <Router>
+        {/* student */}
+        <Route path='/' component={StudentIndex} exact />
+        <Route path='/elev' component={StudentHomeScreen} exact />
+        <Route
+          path='/elev/:subjectID'
+          component={StudentSubjectScreen}
+          exact
+        />
 
-      <Route path='/orar' component={TimetableScreen} exact />
+        <Route path='/orar' component={TimetableScreen} exact />
 
-      {/* profil */}
-      <Route path='/profil' component={ProfileScreen} exact />
-    </Router>
+        {/* profil */}
+        <Route path='/profil' component={ProfileScreen} exact />
+      </Router>
+    </>
   )
 }
 

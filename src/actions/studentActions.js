@@ -372,7 +372,6 @@ export const getTimetableTeachers =
           for (let subjectIndex in teacher.subjectList) {
             let subject = teacher.subjectList[subjectIndex]
             if (subject.subjectID === subjectID) {
-              console.log(subject)
               teachers[subject.subjectID].push(
                 teacher.firstName + ' ' + teacher.lastName
               )

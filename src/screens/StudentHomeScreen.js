@@ -36,21 +36,23 @@ const StudentHomeScreen = ({ history }) => {
   const { termMarks } = studentTermMarks
 
   useEffect(() => {
-    dispatch(deleteMarksAndTruancys())
-  }, [dispatch])
+    if (studentLogin.studentInfo) {
+      dispatch(deleteMarksAndTruancys())
+    }
+  }, [dispatch, studentLogin.studentInfo])
 
   useEffect(() => {
-    if (termMarks.length === 0) {
+    if (termMarks.length === 0 && studentLogin.studentInfo) {
       dispatch(studentGetTermMarks())
     }
-  }, [dispatch, termMarks.length])
+  }, [dispatch, termMarks.length, studentLogin.studentInfo])
 
   const averageMarksLength = Object.keys(averageMarks).length
   useEffect(() => {
-    if (averageMarksLength === 0) {
+    if (averageMarksLength === 0 && studentLogin.studentInfo) {
       dispatch(studentGetAverageMarks())
     }
-  }, [dispatch, averageMarksLength])
+  }, [dispatch, averageMarksLength, studentLogin.studentInfo])
 
   return (
     <>
@@ -73,7 +75,7 @@ const StudentHomeScreen = ({ history }) => {
               className={styles.termMarks}
               style={{ marginBottom: '3vh', width: '98%' }}
             >
-              <div className={styles.termMarksTermContainer}>
+              <div key='1' className={styles.termMarksTermContainer}>
                 <div className={styles.termMarksTerm}>
                   <div className={styles.termMarksTermSpan}>
                     Sem. I:
@@ -91,7 +93,7 @@ const StudentHomeScreen = ({ history }) => {
                 </div>
               </div>
 
-              <div className={styles.termMarksTermContainer}>
+              <div key='2' className={styles.termMarksTermContainer}>
                 <div className={styles.termMarksTerm}>
                   <div className={styles.termMarksTermSpan}>
                     Sem. II:
