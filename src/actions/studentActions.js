@@ -123,7 +123,7 @@ export const getStudentSubjectMarks =
       }
 
       const { data } = await axios.get(
-        `${apiURL}/api/student/mark/${subjectID}`,
+        `${apiURL}/api/student/marks/${subjectID}`,
         config
       )
 
@@ -157,7 +157,7 @@ export const getStudentSubjectTruancys =
       }
 
       const { data } = await axios.get(
-        `${apiURL}/api/student/truancy/${subjectID}`,
+        `${apiURL}/api/student/truancies/${subjectID}`,
         config
       )
 
@@ -201,7 +201,7 @@ export const studentGetAverageMarks =
       }
 
       const { data } = await axios.get(
-        `${apiURL}/api/student/average`,
+        `${apiURL}/api/student/averagemarks`,
         config
       )
 
@@ -259,7 +259,7 @@ export const studentGetTermMarks =
       }
 
       const { data } = await axios.get(
-        `${apiURL}/api/student/term`,
+        `${apiURL}/api/student/termmarks`,
         config
       )
 
@@ -442,7 +442,7 @@ export const getFinalMarks =
       }
 
       const { data } = await axios.get(
-        `${apiURL}/api/student/final/${subjectID}`,
+        `${apiURL}/api/student/finalmarks/${subjectID}`,
         config
       )
 
