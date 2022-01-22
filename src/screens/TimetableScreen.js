@@ -21,10 +21,15 @@ const TimetableScreen = () => {
     (state) => state.studentTimetableTeachers
   )
 
+  const studentLogin = useSelector((state) => state.studentLogin)
+
   const days = [1, 2, 3, 4, 5]
 
-  // i should actually get this from the grade, but too much work
-  const intervals = [1, 2, 3, 4, 5, 6, 7]
+  const intervalsFrame = studentLogin.grade.intervals.split('-')
+  const intervals = []
+  for (let i = intervalsFrame[0]; i <= intervalsFrame[1]; i++) {
+    intervals.push(i)
+  }
 
   const daysNames = ['', 'Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri']
 
@@ -157,12 +162,7 @@ const TimetableScreen = () => {
                                       {periods[day][interval].subject
                                         .name
                                         ? periods[day][interval]
-                                            .subject.name +
-                                          ' - ' +
-                                          periods[day][interval].grade
-                                            .gradeNumber +
-                                          periods[day][interval].grade
-                                            .gradeLetter
+                                            .subject.name
                                         : '-'}
                                     </span>
                                   </label>
