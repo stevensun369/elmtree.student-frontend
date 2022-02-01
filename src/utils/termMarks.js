@@ -20,7 +20,7 @@ export const getTermMarks = async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${apiURL}/api/student/term`,
+      `${apiURL}/api/student/termmarks`,
       config
     )
 

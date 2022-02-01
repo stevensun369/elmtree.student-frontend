@@ -51,7 +51,6 @@ if (userTypeFromStorage === 'student') {
     firstName: studentLoggedIn.firstName,
     dadInitials: studentLoggedIn.dadInitials,
     lastName: studentLoggedIn.lastName,
-    cnp: studentLoggedIn.cnp,
   }
   studentLoggedInGrade = studentLoggedIn.grade
   studentLoggedInSubjectList = studentLoggedIn.subjectList

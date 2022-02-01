@@ -20,7 +20,7 @@ export const getAverageMarks = async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${apiURL}/api/student/average`,
+      `${apiURL}/api/student/averagemarks`,
       config
     )
 

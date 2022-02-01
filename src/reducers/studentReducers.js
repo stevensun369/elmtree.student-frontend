@@ -1,7 +1,4 @@
 import {
-  STUDENT_LOGIN_REQUEST,
-  STUDENT_LOGIN_SUCCESS,
-  STUDENT_LOGIN_FAIL,
   STUDENT_UPDATE,
   STUDENT_READ_LS,
   STUDENT_LOGOUT,
@@ -35,25 +32,6 @@ import {
 
 export const studentLoginReducer = (state = {}, action) => {
   switch (action.type) {
-    case STUDENT_LOGIN_REQUEST:
-      return { loading: true }
-    case STUDENT_LOGIN_SUCCESS:
-      const studentInfoDestructure = {
-        studentID: action.payload.studentID,
-        firstName: action.payload.firstName,
-        dadInitials: action.payload.dadInitials,
-        lastName: action.payload.lastName,
-        cnp: action.payload.cnp,
-      }
-      return {
-        loading: false,
-        studentInfo: studentInfoDestructure,
-        grade: action.payload.grade,
-        subjectList: action.payload.subjectList,
-        token: action.payload.token,
-      }
-    case STUDENT_LOGIN_FAIL:
-      return { loading: false, error: action.payload }
     case STUDENT_UPDATE:
       return {
         ...state,
@@ -67,7 +45,6 @@ export const studentLoginReducer = (state = {}, action) => {
         firstName: action.payload.firstName,
         dadInitials: action.payload.dadInitials,
         lastName: action.payload.lastName,
-        cnp: action.payload.cnp,
       }
       return {
         ...state,

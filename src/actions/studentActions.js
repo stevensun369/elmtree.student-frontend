@@ -1,7 +1,4 @@
 import {
-  STUDENT_LOGIN_REQUEST,
-  STUDENT_LOGIN_SUCCESS,
-  STUDENT_LOGIN_FAIL,
   STUDENT_UPDATE,
   STUDENT_LOGOUT,
   STUDENT_SUBJECT_MARKS_REQUEST,
@@ -33,42 +30,6 @@ import {
 } from '../constants/studentConstants'
 import { apiURL } from '../env'
 import axios from 'axios'
-
-export const login = (cnp, password) => async (dispatch) => {
-  try {
-    dispatch({
-      type: STUDENT_LOGIN_REQUEST,
-    })
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-
-    const { data } = await axios.post(
-      `${apiURL}/api/student/login`,
-      { cnp, password },
-      config
-    )
-
-    dispatch({
-      type: STUDENT_LOGIN_SUCCESS,
-      payload: data,
-    })
-
-    localStorage.setItem('userInfo', JSON.stringify(data))
-    localStorage.setItem('userType', 'student')
-  } catch (error) {
-    dispatch({
-      type: STUDENT_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
-  }
-}
 
 export const studentLogout = () => async (dispatch) => {
   dispatch({
