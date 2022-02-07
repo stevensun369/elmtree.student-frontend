@@ -45,6 +45,7 @@ export const studentLoginReducer = (state = {}, action) => {
         firstName: action.payload.firstName,
         dadInitials: action.payload.dadInitials,
         lastName: action.payload.lastName,
+        email: action.payload.email,
       }
       return {
         ...state,
